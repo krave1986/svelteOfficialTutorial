@@ -1,13 +1,19 @@
 <script>
-	let count = 0;
-	function handleClick() {
-		count += 1;
+	let count = 1;
+	$: {
+		console.log(`Before A: ${count}`);
+		count = 2;
+		console.log(`A: ${count}`);
 	}
-	$: doubled = count * 2;
+	$: {
+		console.log(`B: ${count}`);
+	}
+	$: {
+		console.log(`Before C: ${count}`);
+		count = 3;
+		console.log(`C: ${count}`);
+	}
+	$: {
+		console.log(`D: ${count}`);
+	}
 </script>
-
-<button on:click={handleClick}> Clicked {count} time{count === 1 ? "" : "s"}</button>
-<p>{count} doubled is {doubled}</p>
-
-<style>
-</style>
