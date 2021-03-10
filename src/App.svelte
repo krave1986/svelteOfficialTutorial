@@ -1,19 +1,13 @@
 <script>
-	let count = 1;
-	$: {
-		console.log(`Before A: ${count}`);
-		count = 2;
-		console.log(`A: ${count}`);
+	let numbers = [1, 2, 3, 4];
+
+	function addNumber() {
+		numbers.push(numbers.length + 1);
 	}
-	$: {
-		console.log(`B: ${count}`);
-	}
-	$: {
-		console.log(`Before C: ${count}`);
-		count = 3;
-		console.log(`C: ${count}`);
-	}
-	$: {
-		console.log(`D: ${count}`);
-	}
+
+	$: sum = numbers.reduce((t, n) => t + n, 0);
 </script>
+
+<p>{numbers.join(" + ")} = {sum}</p>
+
+<button on:click={addNumber}>Add a number</button>
